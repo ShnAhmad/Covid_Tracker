@@ -1,4 +1,5 @@
 import 'package:covid_tracker/Model/world_states_model.dart';
+import 'package:covid_tracker/screens/countries_list_screen.dart';
 import 'package:covid_tracker/services/states_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -180,19 +181,25 @@ class _StatesScreenState extends State<StatesScreen>
                         ),
                       ),
                       SizedBox(height: screenHeight * 0.05),
-                      Container(
-                        height: screenHeight * 0.05,
-                        width: screenWidth * 0.8,
-                        decoration: const BoxDecoration(
-                            color: Color.fromARGB(255, 19, 162, 33),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(12))),
-                        child: const Center(
-                            child: Text(
-                          'Track Countries',
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
-                        )),
+                      GestureDetector(
+                        onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const CountriesListScreen())),
+                        child: Container(
+                          height: screenHeight * 0.05,
+                          width: screenWidth * 0.8,
+                          decoration: const BoxDecoration(
+                              color: Color.fromARGB(255, 19, 162, 33),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12))),
+                          child: const Center(
+                              child: Text(
+                            'Track Countries',
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                          )),
+                        ),
                       ),
                       SizedBox(height: screenHeight * 0.04),
                     ],
