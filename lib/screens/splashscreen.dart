@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:covid_tracker/screens/states_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -16,8 +19,12 @@ class _SplashscreenState extends State<Splashscreen>
   void initState() {
     super.initState();
     _controller =
-        AnimationController(duration: const Duration(seconds: 10), vsync: this)
+        AnimationController(duration: const Duration(seconds: 3), vsync: this)
           ..repeat();
+    Timer(
+        const Duration(seconds: 3),
+        () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const StatesScreen())));
   }
 
   @override
