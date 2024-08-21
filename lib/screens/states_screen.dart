@@ -75,7 +75,7 @@ class _StatesScreenState extends State<StatesScreen>
                           showChartValuesOutside: false,
                           chartValueBackgroundColor: Colors.transparent,
                           chartValueStyle: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -134,6 +134,19 @@ class _StatesScreenState extends State<StatesScreen>
                 ),
               ),
               SizedBox(height: screenHeight * 0.05),
+              Container(
+                height: screenHeight * 0.05,
+                width: screenWidth * 0.8,
+                decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 19, 162, 33),
+                    borderRadius: BorderRadius.all(Radius.circular(12))),
+                child: const Center(
+                    child: Text(
+                  'Track Countries',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                )),
+              ),
+              SizedBox(height: screenHeight * 0.04),
             ],
           ),
         ),
