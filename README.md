@@ -49,6 +49,21 @@ A Flutter application that provides up-to-date COVID-19 statistics globally and 
 -  World Statistics: After the splash screen, you’ll be taken to the world statistics screen showing global COVID-19 data.
 - Country List: Navigate to the country list screen to search and view COVID-19 statistics by country.
 - Country Details: Tap on a country in the list to see detailed COVID-19 statistics.
+
+  ## API Reference
+
+#### World Statistics:
+
+```http
+  https://disease.sh/v3/covid-19/all
+```
+
+#### Countries List:
+
+```http
+  https://disease.sh/v3/covid-19/countries
+```
+
 ## Installation
 
 - Clone the repository:
