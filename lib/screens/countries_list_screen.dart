@@ -1,3 +1,4 @@
+import 'package:covid_tracker/screens/details_screen.dart';
 import 'package:covid_tracker/services/states_services.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
@@ -11,13 +12,13 @@ class CountriesListScreen extends StatefulWidget {
 
 class _CountriesListScreenState extends State<CountriesListScreen> {
   TextEditingController _textEditingController = TextEditingController();
-  FocusNode _focusNode = FocusNode(); // Create a FocusNode
+  FocusNode _focusNode = FocusNode();
   StatesServices statesServices = StatesServices();
 
   @override
   void dispose() {
     _textEditingController.dispose();
-    _focusNode.dispose(); // Dispose the FocusNode
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -25,7 +26,7 @@ class _CountriesListScreenState extends State<CountriesListScreen> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        FocusScope.of(context).unfocus(); // Unfocus to close the keyboard
+        FocusScope.of(context).unfocus();
       },
       child: Scaffold(
         appBar: AppBar(
@@ -37,7 +38,7 @@ class _CountriesListScreenState extends State<CountriesListScreen> {
               padding: const EdgeInsets.all(15.0),
               child: TextField(
                 controller: _textEditingController,
-                focusNode: _focusNode, // Assign the FocusNode to the TextField
+                focusNode: _focusNode,
                 onChanged: (value) => setState(() {}),
                 decoration: InputDecoration(
                     hintText: 'Search country with name',
@@ -75,25 +76,71 @@ class _CountriesListScreenState extends State<CountriesListScreen> {
                       itemBuilder: (context, index) {
                         String name = snapshot.data![index]['country'];
                         if (_textEditingController.text.isEmpty) {
-                          return ListTile(
-                            leading: Image.network(
-                                height: 50,
-                                width: 50,
-                                snapshot.data![index]['countryInfo']['flag']),
-                            title: Text(snapshot.data![index]['country']),
-                            subtitle:
-                                Text(snapshot.data![index]['cases'].toString()),
+                          return InkWell(
+                            onTap: () =>
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => DetailsScreen(
+                                          active: snapshot.data![index]
+                                              ['active'],
+                                          critical: snapshot.data![index]
+                                              ['critical'],
+                                          image: snapshot.data![index]
+                                              ['countryInfo']['flag'],
+                                          name: snapshot.data![index]
+                                              ['country'],
+                                          tests: snapshot.data![index]['tests'],
+                                          todayRecovered: snapshot.data![index]
+                                              ['todayRecovered'],
+                                          totalCases: snapshot.data![index]
+                                              ['cases'],
+                                          totalDeaths: snapshot.data![index]
+                                              ['deaths'],
+                                          recovered: snapshot.data![index]
+                                              ['recovered'],
+                                        ))),
+                            child: ListTile(
+                              leading: Image.network(
+                                  height: 50,
+                                  width: 50,
+                                  snapshot.data![index]['countryInfo']['flag']),
+                              title: Text(snapshot.data![index]['country']),
+                              subtitle: Text(
+                                  snapshot.data![index]['cases'].toString()),
+                            ),
                           );
                         } else if (name.toLowerCase().contains(
                             _textEditingController.text.toLowerCase())) {
-                          return ListTile(
-                            leading: Image.network(
-                                height: 50,
-                                width: 50,
-                                snapshot.data![index]['countryInfo']['flag']),
-                            title: Text(snapshot.data![index]['country']),
-                            subtitle:
-                                Text(snapshot.data![index]['cases'].toString()),
+                          return InkWell(
+                            onTap: () =>
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => DetailsScreen(
+                                          active: snapshot.data![index]
+                                              ['active'],
+                                          critical: snapshot.data![index]
+                                              ['critical'],
+                                          image: snapshot.data![index]
+                                              ['countryInfo']['flag'],
+                                          name: snapshot.data![index]
+                                              ['country'],
+                                          tests: snapshot.data![index]['tests'],
+                                          todayRecovered: snapshot.data![index]
+                                              ['todayRecovered'],
+                                          totalCases: snapshot.data![index]
+                                              ['cases'],
+                                          totalDeaths: snapshot.data![index]
+                                              ['deaths'],
+                                          recovered: snapshot.data![index]
+                                              ['recovered'],
+                                        ))),
+                            child: ListTile(
+                              leading: Image.network(
+                                  height: 50,
+                                  width: 50,
+                                  snapshot.data![index]['countryInfo']['flag']),
+                              title: Text(snapshot.data![index]['country']),
+                              subtitle: Text(
+                                  snapshot.data![index]['cases'].toString()),
+                            ),
                           );
                         } else {
                           return Container();
