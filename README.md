@@ -20,6 +20,7 @@ A Flutter application that provides up-to-date COVID-19 statistics globally and 
 ## Screenshots
 
 - Splash screen
+  
 ![c4](https://github.com/user-attachments/assets/f45ddd0e-e586-4736-bf72-7766718a43ca)
 
 - States screen
